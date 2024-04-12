@@ -1,6 +1,6 @@
 import os # os es un módulo de Python que proporciona funciones para interactuar con el sistema operativo subyacente en el que se ejecuta Python. Permite realizar una variedad de tareas
-import requests #  es una biblioteca de Python que permite realizar solicitudes HTTP de manera sencilla y flexible. Facilita la interacción con servicios web y la obtención de recursos a través de la red utilizando los métodos HTTP como GET, POST, PUT, DELETE, etc.
-from bs4 import BeautifulSoup  # Beautiful Soup es una biblioteca de Python diseñada para extraer datos de archivos HTML y XML.
+import requests  #  es una biblioteca de Python que permite realizar solicitudes HTTP de manera sencilla y flexible. Facilita la interacción con servicios web y la obtención de recursos a través de la red utilizando los métodos HTTP como GET, POST, PUT, DELETE, etc.
+from bs4 import BeautifulSoup # Beautiful Soup es una biblioteca de Python diseñada para extraer datos de archivos HTML y XML.
 
 # Definición de códigos de colores ANSI
 color_amarillo = "\033[93m"
@@ -9,158 +9,130 @@ color_verde = "\033[92m"
 color_rojo = "\033[91m"
 color_reset = "\033[0m"
 
-class Shinigami: # Se define la clase Shinigami  
-    def __init__(self, nombre, arma, habilidad_especial): # Metodo magico para inicializar las propiedades del Shinigami
+class Shinigami: # Se define la clase Shinigami
+    def __init__(self, nombre, arma, habilidad_especial): # Metodo magico, se inicializan las propiedades del Shinigami
         self.nombre = nombre # Nombre del Shinigami
-        self.raza = "Shinigami" # Raza del Shinigami
+        self.raza = "Shinigami"  # Raza del Shinigami (siempre será "Shinigami")
         self.arma = arma # Arma del Shinigami
         self.habilidad_especial = habilidad_especial # Habilidad especial del Shinigami
 
-    def detalles(self): # Metodo para obtener los detalles del Shinigami
+    def detalles(self): # Método para obtener los detalles del Shinigami
         return f"{color_azul}Nombre: {color_reset} {color_rojo}{self.nombre}{color_reset}, {color_azul}Raza: {color_reset} {color_rojo}{self.raza}{color_reset}, {color_azul}Arma: {color_reset} {color_rojo}{self.arma}{color_reset}, {color_azul}Habilidad Especial: {color_reset} {color_rojo}{self.habilidad_especial}{color_reset}"
-        # Devuelve una cadema formatada con los detalles del Shinigami 
-        
-class Quincy: # Se define la clase Quincy  
+        # Devuelve una cadena formateada con los detalles del Shinigami, incluyendo nombre, raza, arma y habilidad especial
+
+class Quincy: # Se define la clase Quincy
     def __init__(self, nombre): # Metodo magico para inicializar las propiedades del Quincy
         self.nombre = nombre # Nombre del Quincy
         self.raza = "Quincy" # Raza del Quincy
-        self.arma = None # Arma del Quincy (si lo tiene)
-        self.habilidad_especial = None  # Habilidad especial del Quincy (silo tiene)
+        self.arma = None # Arma del Quincy (si la tiene)
+        self.habilidad_especial = None # Habilidad del Quincy (si la tiene)
 
-    def detalles(self): # Metodo para obtener los detalles del Quincy
+    def detalles(self): # Metodo para obtener los detalles del Quincy  
         return f"{color_azul}Nombre: {color_reset} {color_rojo}{self.nombre}{color_reset}, {color_azul}Raza: {color_reset} {color_rojo}{self.raza}{color_reset}"
-        # Devuelve una cadema formatada con los detalles del Quincy
+        # Se devuelve la cadena formateada con los detalles del Quincy
 
-class Hollow:  # Se define la clase Hollow
+class Hollow: # Se define la clase Hollow
     def __init__(self, nombre, habilidad_especial): # Metodo magico para inicializar las propiedades del Hollow
-        self.nombre = nombre  # Metodo magico para inicializar las propiedades del Hollow
+        self.nombre = nombre # Nombre del Hollow
         self.raza = "Hollow" # Raza del Hollow
-        self.arma = None # Arma del Hollow (si lo tiene)
-        self.habilidad_especial = habilidad_especial   # Habilidad especial del Hollow
+        self.arma = None # Arma del Hollow (si la tiene)
+        self.habilidad_especial = habilidad_especial # Habilidad del Hollow
 
-    def detalles(self): # Metodo para obtener los detalles del Hollow
+    def detalles(self): # Metodo para obtener los detalles del Hollow       
         return f"{color_azul}Nombre: {color_reset} {color_rojo}{self.nombre}{color_reset}, {color_azul}Raza: {color_reset} {color_rojo}{self.raza}{color_reset}, {color_azul}Habilidad Especial: {color_reset} {color_rojo}{self.habilidad_especial}{color_reset}"
-        # Devuelve una cadema formatada con los detalles del Hollow
 
-class Visored(Shinigami, Hollow):
-    
-    def __init__(self, nombre, poder, habilidades, zanpakuto, mascara):
-        # Llama a los constructores de las clases base
-        Shinigami.__init__(self, nombre, '', [], zanpakuto)
-        Hollow.__init__(self, nombre, poder, habilidades, mascara)
-        
 class Programa: #clase llamada Programa que contiene varios métodos estáticos útiles para el funcionamiento del programa
-    personajes_creados = [] # Se define una lista para almacenar los personajess 
+    personajes_creados = [] # Se define una lista para almacenar los personajes
 
-    @staticmethod #
+    @staticmethod
     def limpiar_consola():
-        os.system('cls' if os.name == 'nt' else 'clear') #Este es un método estático llamado limpiar_consola(), que se encarga de limpiar la consola. Utiliza la función 
+        os.system('cls' if os.name == 'nt' else 'clear') #Este es un método estático llamado limpiar_consola(), 
+                                                        # que se encarga de limpiar la consola. Utiliza la función 
+    @staticmethod
+    def pausar_para_continuar(): #Este es otro método estático llamado pausar_para_continuar(),
+        input("Presione la tecla enter para continuar...") # que pausa la ejecución del programa hasta que el usuario presione
+        Programa.limpiar_consola() # la tecla Enter. Después de que el usuario presiona Enter, se llama al método limpiar_consola()
 
     @staticmethod
-    def pausar_para_continuar():
-        input("Presione la tecla enter para continuar...")
-        Programa.limpiar_consola()
-#Este es otro método estático llamado pausar_para_continuar(), que pausa la ejecución del programa hasta que el usuario presione la tecla Enter. Después de que el usuario presiona Enter, se llama al método limpiar_consola()
-
-    @staticmethod
-    def detalle_personaje(character_name): #método estático llamado detalle_personaje(character_name), que recibe el nombre de un personaje como argumento.
-        url = f"https://bleach.fandom.com/es/wiki/{character_name}"
+    def detalle_personaje(character_name): # método estático llamado detalle_personaje(character_name),
+        url = f"https://bleach.fandom.com/es/wiki/{character_name}" # que recibe el nombre de un personaje como argumento.
         try:
             response = requests.get(url)
             if response.status_code == 200: # Se araña la URL para tomar la informacion
-                
                 soup = BeautifulSoup(response.text, "html.parser")
                 paragraphs = soup.find_all("p")
-                for p in paragraphs: # Si la respuesta fue exitosa, se crea un objeto BeautifulSoup para analizar el HTML de la página. Se buscan todos los elementos de párrafo (<p>) y se itera sobre ellos. Si el nombre del personaje está presente en el texto de un párrafo, se devuelve ese texto como información sobre el personaje.
-                    if character_name in p.get_text():
-                        info_text = p.get_text(strip=True)
-                        return info_text     
-                             
+                for p in paragraphs: # Si la respuesta fue exitosa, se crea un objeto BeautifulSoup
+                    if character_name in p.get_text(): #para analizar el HTML de la página. Se buscan todos los elementos de párrafo (<p>)  
+                        info_text = p.get_text(strip=True) # y se itera sobre ellos. Si el nombre del personaje está presente en el texto
+                        return info_text #de un párrafo, se devuelve ese texto como información sobre el personaje.
                 return f"No se pudo encontrar información sobre {character_name}."
             else:
                 return f"Error al obtener la página: {response.status_code}"
         except requests.RequestException as e:
             return f"Error de conexión: {e}"
-        #Si ocurre alguna excepción al hacer la solicitud (por ejemplo, un problema de conexión), se devuelve un mensaje de error indicando la excepción.
 
     @staticmethod
     def crear_personajes_shinigami(tipo_personaje):  #se encarga de crear personajes Shinigami basados en la información obtenida de una tabla en una página web
         url = "https://bleach.fandom.com/es/wiki/Lista_de_Armas" #Se define la URL de la página de la wiki de Bleach que contiene la lista de armas.
         response = requests.get(url) # Se realiza araña la URL definida y se guarda la respuesta en la variable response.
         if response.status_code == 200: # Verificar si la solicitud fue exitosa , la URL manda la señal 200 para ver si se cumple
-            soup = BeautifulSoup(response.content, 'html.parser') # Se crea un objeto BeautifulSoup para analizar el contenido HTML de la respuesta.
-            
+            soup = BeautifulSoup(response.content, 'html.parser') # Se crea un objeto BeautifulSoup para analizar el contenido HTML de la respuesta
             tabla = soup.find('table')
-            filas = tabla.find_all('tr') #Se encuentra la tabla en la página y se obtienen todas las filas de la tabla excepto la primera, que generalmente contiene encabezados de columna.
-            
-            contador = 1
+            filas = tabla.find_all('tr') #Se encuentra la tabla en la página y se obtienen todas las filas de la tabla excepto la primera,
+            contador = 1 #que generalmente contiene encabezados de columna
             nombres_personajes = []
             armas_personajes = []
-            habilidades_personajes = [] # Se inicializan algunas variables para almacenar información sobre los personajes, como nombres, armas y habilidades especiales.
+            habilidades_personajes = []
 
-            for fila in filas[1:]: # Se itera sobre todas las filas de la tabla, excepto la primera.
+            for fila in filas[1:]:
                 columnas = fila.find_all('td')
-                if len(columnas) >= 3: 
-                #Se encuentran todas las columnas (<td>) en la fila y se verifica si hay al menos tres columnas, lo que indica que la fila contiene información relevante para crear un personaje.    
-                    
-                    nombre_personaje = columnas[1].text.strip()                 
-                    nombres_personajes.append(nombre_personaje)             
+                if len(columnas) >= 3:
+                    nombre_personaje = columnas[1].text.strip()
+                    nombres_personajes.append(nombre_personaje)
                     nombre_arma = columnas[0].text.strip()
                     armas_personajes.append(nombre_arma)
                     habilidad_especial = columnas[2].text.strip()
                     habilidades_personajes.append(habilidad_especial)
                     print(f"{contador}. {nombre_personaje}")
                     contador += 1
-                    """Se extrae el nombre del personaje, el nombre del arma y 
-la habilidad especial de las columnas de la fila actual, y se 
-almacenan en las listas correspondientes. También se imprime el nombre del 
-personaje con un número de índice para que el usuario pueda seleccionarlo"""
 
             seleccion = input("Por favor, seleccione el número correspondiente al personaje deseado: ")
-            if seleccion.isdigit() and 1 <= int(seleccion) <= len(nombres_personajes): 
-                #Se verifica si la selección del usuario es un número válido dentro del rango de personajes disponibles.
-                
+            if seleccion.isdigit() and 1 <= int(seleccion) <= len(nombres_personajes):
                 indice_seleccionado = int(seleccion) - 1
                 nombre_personaje = nombres_personajes[indice_seleccionado]
                 arma_personaje = armas_personajes[indice_seleccionado]
                 habilidad_personaje = habilidades_personajes[indice_seleccionado]
                 raza_personaje = "Shinigami" if tipo_personaje == "1" else "Visored"
-                """Si la selección es válida, se obtiene la información del personaje seleccionado 
-                utilizando el índice seleccionado y se crea una instancia de la clase Shinigami 
-                (o Visored, dependiendo del valor de tipo_personaje). 
-                Esta instancia se agrega a la lista personajes_creados de la clase Programa"""
-                
                 Programa.personajes_creados.append(Shinigami(nombre_personaje, arma_personaje, habilidad_personaje))
                 print(f"{color_amarillo}El personaje {nombre_personaje} ha sido creado.{color_reset}")
                 print(f"{color_azul}Nombre del personaje: {color_reset} {color_rojo}{nombre_personaje}{color_reset}")
                 print(f"{color_azul}Raza del personaje: {color_reset} {color_rojo}{raza_personaje}{color_reset}")
                 print(f"{color_azul}Arma del personaje: {color_reset} {color_rojo}{arma_personaje}{color_reset}")
                 print(f"{color_azul}Habilidad especial del personaje: {color_reset} {color_rojo}{habilidad_personaje}{color_reset}")
-                #imprime los persoanejes creados
             else:
                 print("Selección inválida. Por favor, seleccione un número válido.")
         else:
             print("Error al obtener la página:", response.status_code)
 
-    @staticmethod
-    def crear_personajes_hollow():
-        url = "https://bleach.fandom.com/es/wiki/Hollow#Menos"
-        start_text = "Menos Grande"
-        end_text = "Arrancar"
-        response = requests.get(url) #Se saca la araña la informacion de la URL
-        if response.status_code == 200: #Se verifica si la solicitud fue exitosa con el codigo http 200
-            soup = BeautifulSoup(response.text, 'html.parser') # Se crea un objeto BeautifulSoup para analizar el HTML de la página web obtenida en la respuesta.
-            h3_elements = soup.find_all('h3') # Encontra la fila de la URL h3
-            start_capture = False # Para indicar que aún no se ha comenzado a capturar la información relevante de los hollows 
-            hollows = [] # Se crea una lista para almacenar los hollows encontrados 
-            for element in h3_elements: # Itera cada elemento de lista encontrado
-                if element.text.strip() == start_text: # Si el texto encontrado en star & end los toma y es verdadero
+    @staticmethod # Metodo estatico 
+    def crear_personajes_hollow(): 
+        url = "https://bleach.fandom.com/es/wiki/Hollow#Menos" # URL de la página que contiene la información sobre los personajes Hollow
+        start_text = "Menos Grande" # Texto que marca el comienzo de la sección de personajes Hollow
+        end_text = "Arrancar" # Texto que marca el final de la sección de personajes Hollow
+        response = requests.get(url)  # Realiza una solicitud GET a la URL
+        if response.status_code == 200: # Verifica si la solicitud fue exitosa (código de estado 200)
+            soup = BeautifulSoup(response.text, 'html.parser')  # Parsea el contenido HTML de la página
+            h3_elements = soup.find_all('h3') # Encuentra todos los elementos h3 en la página
+            start_capture = False # Bandera para indicar cuándo comenzar a capturar los nombres de los Hollows
+            hollows = []  # Lista para almacenar los nombres y habilidades especiales de los Hollows
+            for element in h3_elements: # Itera sobre todos los elementos h3 encontrados
+                if element.text.strip() == start_text:  # Comprueba si el texto del elemento coincide con el texto de inicio
                     start_capture = True
-                if start_capture: #Se captura el nombre y la habilidad especial del Hollow y se añade a la lista hollows.
+                if start_capture: # Si se debe comenzar a capturar, extrae el nombre y la habilidad especial del Hollow
                     hollow_name = element.text.strip()
                     habilidad_especial = element.find_next('p').text.strip()
                     hollows.append((hollow_name, habilidad_especial))
-                if element.text.strip() == end_text: #Si el texto del elemento coincide con el texto de fin definido anteriormente, se rompe el bucle, ya que se ha capturado toda la información relevante.
+                if element.text.strip() == end_text: # Comprueba si se ha alcanzado el final de la sección de Hollows
                     break
             for i, (nombre, _) in enumerate(hollows, 1): # Imprime la lista de Hollows disponibles y solicita al usuario que seleccione uno
                 print(f"{i}. {nombre}")
@@ -176,7 +148,8 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
             else:
                 print("Selección inválida. Por favor, seleccione un número válido.") # Mensaje de error si la selección del usuario no es válida
         else:
-            print("Error al obtener la página:", response.status_code) # Mensaje de error si la solicitud GET falla
+            print("Error al obtener la página:", response.status_code) # Mensaje de error si la solicitud GET falla
+
     @staticmethod
     def extraer_enlaces_desde_uryu_hasta_hubert():
         url = "https://bleach.fandom.com/es/wiki/Lista_de_Quincy" # URL de la página que contiene la lista de Quincy
@@ -194,36 +167,21 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
                 numero_enlace += 1
             if empezar_almacenar and enlace.text == "Hubert": # Comprueba si se ha alcanzado el enlace "Hubert" y termina de almacenar
                 break
-        return enlaces_uryu_hubert # Retorna la lista de enlaces desde Uryū hasta Hubert
+        return enlaces_uryu_hubert # Retorna la lista de enlaces desde Uryū hasta Hubert
+
     @staticmethod
     def seleccionar_quincy():
-        """Esta función estática seleccionar_quincy() 
-        se encarga de permitir al usuario seleccionar un Quincy de una lista obtenida a partir de la función 
-        extraer_enlaces_desde_uryu_hasta_hubert(). Vamos a analizarla línea por línea:"""
-        
         enlaces_quincy = Programa.extraer_enlaces_desde_uryu_hasta_hubert()
-        """Se llama al método estático extraer_enlaces_desde_uryu_hasta_hubert() de la clase Programa para obtener 
-        la lista de enlaces desde Uryū hasta Hubert."""
-        
-        if enlaces_quincy: #Se verifica si la lista enlaces_quincy contiene elementos, es decir, si se encontraron Quincies disponibles en la página.
-            print(f"{color_amarillo}Quincies Disponibles:{color_reset}") #Si hay Quincies disponibles, se imprime un encabezado indicando la lista de Quincies disponibles.
-            
+        if enlaces_quincy:
+            print(f"{color_amarillo}Quincies Disponibles:{color_reset}")
             for i, (_, nombre_quincy) in enumerate(enlaces_quincy, 1):
                 print(f"{i}. {nombre_quincy}")
-                """Se itera sobre la lista enlaces_quincy y se imprime el nombre de cada Quincy 
-                junto con su número correspondiente de acuerdo al orden en la lista."""
-                
             seleccion = input("Por favor, seleccione el número correspondiente al Quincy deseado: ")
-            
-            if seleccion.isdigit() and 1 <= int(seleccion) <= len(enlaces_quincy):#e verifica si la selección del usuario es un número válido dentro del rango de Quincies disponibles.
-                indice_seleccionado = int(seleccion) - 1
-                """Se obtiene el nombre del Quincy seleccionado utilizando el índice seleccionado.
-                """
+            if seleccion.isdigit() and 1 <= int(seleccion) <= len(enlaces_quincy):
+                indice_seleccionado = int(seleccion) - 1 # Convierte la entrada del usuario a un entero y luego resta 1 a ese valor.
                 _, nombre_quincy = enlaces_quincy[indice_seleccionado]
                 print(f"{color_azul}Quincy seleccionado: {color_reset} {color_rojo}{nombre_quincy}{color_reset}")
                 Programa.personajes_creados.append(Quincy(nombre_quincy))
-                """Se crea una instancia de la clase Quincy con el nombre del Quincy seleccionado y se agrega a la 
-                lista personajes_creados de la clase Programa."""
             else:
                 print("Selección inválida. Por favor, seleccione un número válido.")
         else:
@@ -237,7 +195,7 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
                 raise ValueError # Si la opción está fuera del rango, lanza una excepción de ValueError
             return opcion_int # Si la opción es válida, devuelve el valor convertido a entero
         except ValueError: # Si ocurre una excepción al intentar convertir la opción a entero o si la opción está fuera del rango,
-            return None     # devuelve None para indicar que la opción no es válida
+            return None     # devuelve None para indicar que la opción no es válida
 
     @classmethod
     def ejecutar_opcion(cls, opcion):
@@ -250,43 +208,45 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
         3. {color_verde}Quincy{color_reset}
         4. {color_verde}Visored (Shinigami con poderes Hollow){color_reset}
         Seleccione una opción: """)
-            if tipo_personaje in ["1", "4"]:
-                """Verifica el tipo de personaje seleccionado y llama al método correspondiente para crearlo
-"""
+            if tipo_personaje in ["1", "4"]: # Verifica el tipo de personaje seleccionado y llama al método correspondiente para crearlo
                 cls.crear_personajes_shinigami(tipo_personaje)
- 
-        elif opcion == 2: # Opción para mostrar los personajes creados
+            elif tipo_personaje == "2": # Opción para mostrar los personajes creados
+                cls.crear_personajes_hollow()
+            elif tipo_personaje == "3": # Opción para mostrar detalles de un personaje específico
+                cls.seleccionar_quincy()
+            else:
+                print("Opción no válida.")
+        elif opcion == 2:
             print("Personajes Creados:")
             for i, personaje in enumerate(cls.personajes_creados, 1):
                 print(f"{i}. {personaje.detalles()}")
-                
-        elif opcion == 3:# Opción para mostrar detalles de un personaje 
-            if cls.personajes_creados:
-                for i, personaje in enumerate(cls.personajes_creados, 1):
-                    print(f"{i}. {personaje.nombre} - {personaje.raza}")
-                seleccion = input("Por favor, seleccione el número correspondiente al personaje deseado: ")
-                if seleccion.isdigit() and 1 <= int(seleccion) <= len(cls.personajes_creados):
-                    indice_seleccionado = int(seleccion) - 1
-                    personaje = cls.personajes_creados[indice_seleccionado]
-                    print(f"Detalles del personaje seleccionado:")
+        elif opcion == 3:
+            if cls.personajes_creados: # Opción para mostrar detalles de un personaje específico, Verifica si hay personajes creados para continuar
+                for i, personaje in enumerate(cls.personajes_creados, 1): # Itera sobre cada personaje de la lista para pasar a imprimirlos
+                    print(f"{i}. {personaje.nombre} - {personaje.raza}") # imprime el nombre y la raza enumerando en orden ascendente
+                seleccion = input("Por favor, seleccione el número correspondiente al personaje deseado: ") # Solicitamos el numero del personaje que desea seleccionar
+                if seleccion.isdigit() and 1 <= int(seleccion) <= len(cls.personajes_creados): #verificamos si la entrada del usuario es un dígito y si está dentro del rango válido de índices de la lista
+                    indice_seleccionado = int(seleccion) - 1 # Convierte la entrada del usuario a un entero y luego resta 1 a ese valor.
+                    personaje = cls.personajes_creados[indice_seleccionado] # Se obtiene el personaje seleccionado para 
+                    print(f"Detalles del personaje seleccionado:") # Pasar a imprimir los detalles de este
                     descripcion = cls.detalle_personaje(personaje.nombre)
                     print(f"Nombre: {personaje.nombre} - {personaje.raza}")
                     print(f"Detalle: {descripcion}")
-                    if personaje.raza == "Shinigami" or personaje.raza == "Visored":
-                        print(f"Arma: {personaje.arma}")
+                    if personaje.raza == "Shinigami" or personaje.raza == "Visored": # Si el personaje es Shinigami o Visored,
+                        print(f"Arma: {personaje.arma}")                             # imprime lo correspondiente
                     print(f"Habilidad Especial: {personaje.habilidad_especial}")
                 else:
-                    print("Selección inválida. Por favor, seleccione un número válido.")
+                    print("Selección inválida. Por favor, seleccione un número válido.") # Si la opcion es invalida muestra el mensaje
             else:
-                print("No hay personajes creados.")
+                print("No hay personajes creados.") # Si no hay personajes creados imprime el mensaje11
         elif opcion == 4: # Opción para realizar un ataque entre personajes
             if cls.personajes_creados:
                 print("Personajes Disponibles para Atacar:")
                 for i, personaje in enumerate(cls.personajes_creados, 1):
                     print(f"{i}. {personaje.nombre} - {personaje.raza}")
                 seleccion_atacante = input("Seleccione el número correspondiente al personaje que quiere atacar: ")
-                if seleccion_atacante.isdigit() and 1 <= int(seleccion_atacante) <= len(cls.personajes_creados):
-                    indice_atacante = int(seleccion_atacante) - 1
+                if seleccion_atacante.isdigit() and 1 <= int(seleccion_atacante) <= len(cls.personajes_creados): #verificamos si la entrada del usuario es un dígito y si está dentro del rango válido de índices de la lista
+                    indice_atacante = int(seleccion_atacante) - 1 # Convierte la entrada del usuario a un entero y luego resta 1 a ese valor.
                     atacante = cls.personajes_creados[indice_atacante]
                     print("Personajes disponibles para ser atacados:")
                     for i, objetivo in enumerate(cls.personajes_creados, 1):
@@ -313,9 +273,9 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
                     print("Selección inválida para el atacante. Intente de nuevo.")
             else:
                 print("No hay personajes creados para realizar un ataque.")
-        elif opcion == 5:
-            print("**********SALIENDO DEL PROGRAMA***********")
-            print("*********Realizado por:**************")
+        elif opcion == 5: # Opción para salir del programa
+            print("***SALIENDO DEL PROGRAMA****")
+            print("****Realizado por:*****")
             print("Sebastian Orrego Urrea")
             print("Mateo Gallelo Gonzalez")
             print("Valentina Osorio Buitrago")
@@ -323,9 +283,7 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
 
     @classmethod
     def iniciar(cls):
-        """Este es un método de clase llamado iniciar(). 
-        Al ser un método de clase, toma cls como primer parámetro, que hace referencia a la propia clase."""
-        while True: # Bucle para tomar una condicion verdadera 
+        while True:
             print(f"""{color_amarillo}
             Menú :{color_reset}
             1. {color_verde}Crear personaje{color_reset}
@@ -333,21 +291,14 @@ personaje con un número de índice para que el usuario pueda seleccionarlo"""
             3. {color_verde}Ver detalles de un personaje{color_reset}
             4. {color_verde}Activar Habilidad o atacar{color_reset}
             5. {color_rojo}Salir{color_reset}""")
-            """Se imprime el menú del programa, utilizando códigos de color para hacerlo más visual. 
-            Los códigos {color_amarillo}, {color_reset}, {color_verde} y {color_rojo} para tomar los colores."""
-
-            opcion_usuario = input( "Seleccione una opción: ") # Selecione un opcion del menu 
-            opcion_validada = cls.validar_opcion(opcion_usuario) # Segun la opcion que seleciones el usario es valida o no
-            
+            opcion_usuario = input("Seleccione una opción: ")
+            opcion_validada = cls.validar_opcion(opcion_usuario)
             if opcion_validada is not None:
                 cls.ejecutar_opcion(opcion_validada)
                 cls.pausar_para_continuar()
-                """Se verifica si la opción validada no es None, lo que significa que la opción es válida. 
-                En tal caso, se llama al método de clase ejecutar_opcion()"""
             else:
                 print('Oops! Opción no válida. Intente de nuevo.')
                 cls.pausar_para_continuar()
-
 
 if __name__ == '__main__':
     Programa.iniciar()
